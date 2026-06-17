@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quem Somos – 9G Plastic</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  background:linear-gradient(135deg,#2E86C1,#5BB8E8);
+  color:var(--branco); padding:50px 20px; text-align:center;
+}
+.page-hero h1 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(32px,5vw,52px); font-weight:900; text-transform:uppercase;
+}
+.page-hero p { font-size:16px; color:rgba(255,255,255,.8); margin-top:8px; }
+
+.sobre-section { padding:70px 20px; background:var(--branco); }
+.sobre-inner {
+  max-width:1000px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;
+}
+.sobre-text h2 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(26px,3vw,38px); font-weight:900;
+  text-transform:uppercase; color:var(--azul-medio);
+  margin-bottom:20px; letter-spacing:-0.5px;
+}
+.sobre-text p { color:var(--texto-leve); line-height:1.8; margin-bottom:16px; font-size:15px; }
+
+.diretrizes { margin-top:28px; }
+.diretrizes h3 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:18px; font-weight:700; text-transform:uppercase;
+  color:var(--azul-medio); margin-bottom:14px; letter-spacing:.5px;
+}
+.diretriz-item {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:14px; background:var(--cinza-claro);
+  border-left:4px solid var(--azul);
+  border-radius:0 6px 6px 0; margin-bottom:10px;
+}
+.diretriz-item .num {
+  background:var(--azul); color:var(--branco);
+  width:26px; height:26px; border-radius:50%;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:15px; font-weight:900;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.diretriz-item p { font-size:14px; color:var(--texto); line-height:1.5; margin:0; }
+
+.sobre-visual { display:flex; flex-direction:column; gap:16px; }
+.visual-card {
+  background:linear-gradient(135deg,#2E86C1,#5BB8E8);
+  border-radius:10px; padding:28px 24px; color:var(--branco); text-align:center;
+}
+.visual-card .icon { font-size:40px; margin-bottom:12px; }
+.visual-card h3 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:22px; font-weight:900; text-transform:uppercase;
+  margin-bottom:8px;
+}
+.visual-card p { font-size:14px; color:rgba(255,255,255,.8); line-height:1.6; }
+
+.materiais-section { padding:50px 20px; background:var(--cinza-claro); text-align:center; }
+.materiais-grid {
+  max-width:800px; margin:0 auto;
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+}
+.material-chip {
+  background:var(--branco); border:2px solid var(--azul);
+  color:var(--azul-medio);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:16px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+  padding:10px 24px; border-radius:4px;
+}
+
+@media(max-width:768px){
+  .sobre-inner { grid-template-columns:1fr; gap:30px; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="tel:1137935717">☎ (11) 3793-5717</a>
+  <a href="https://api.whatsapp.com/send?phone=5511986140795" target="_blank">📱 (11) 98614-0795</a>
+  <a href="mailto:m9gplastic@yahoo.com.br">✉ m9gplastic@yahoo.com.br</a>
+</div>
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-area">
+      <div class="brand"><span class="nine">9</span><span class="g">.G.</span><span class="plastic">PLASTIC</span></div>
+      <small>INJEÇÃO TERMOPLÁSTICA LTDA.</small>
+    </a>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="quem-somos.html" class="active">Quem Somos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <button class="cart-btn" id="cartToggle">🛒 Carrinho <span class="cart-badge" id="cartBadge">0</span></button>
+  </div>
+</header>
+
+<div class="page-hero">
+  <h1>Quem Somos</h1>
+  <p>Conheça a nossa história e os nossos valores</p>
+</div>
+
+<section class="sobre-section">
+  <div class="sobre-inner">
+    <div class="sobre-text">
+      <span class="section-label" style="text-align:left">Um Pouco Sobre Nós</span>
+      <h2>Qualidade que vem da fábrica</h2>
+      <p>A 9G Plastic é uma termoplástica voltada para o segmento de festas, que tem como objetivo fornecer produtos e serviços de alta qualidade e que atende ao gosto de seus clientes.</p>
+      <p>Contamos com uma estrutura industrial moderna, máquinas de última geração e colaboradores altamente qualificados.</p>
+      <p>A 9G Plastic se preocupa com o meio ambiente e por esta razão trabalhamos de uma forma limpa e organizada, com ações que evitam o desperdício e a destinação correta de resíduos.</p>
+
+      <div class="diretrizes">
+        <h3>Nossas Principais Diretrizes</h3>
+        <div class="diretriz-item">
+          <div class="num">1</div>
+          <p>Buscar a satisfação de nossos clientes a fim de sermos considerados referência no mercado.</p>
+        </div>
+        <div class="diretriz-item">
+          <div class="num">2</div>
+          <p>Contribuir para o crescimento dos funcionários dentro da empresa, tanto profissionalmente como pessoalmente.</p>
+        </div>
+        <div class="diretriz-item">
+          <div class="num">3</div>
+          <p>Sempre inovar nossos produtos, de um modo que sempre possamos estar à frente no mercado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sobre-visual">
+      <div class="visual-card">
+        <div class="icon">🏭</div>
+        <h3>Estrutura Industrial</h3>
+        <p>Máquinas de última geração e colaboradores altamente qualificados para garantir a melhor qualidade em cada peça.</p>
+      </div>
+      <div class="visual-card">
+        <div class="icon">♻️</div>
+        <h3>Compromisso Ambiental</h3>
+        <p>Trabalhamos de forma limpa e organizada, com ações que evitam o desperdício e garantem a destinação correta de resíduos.</p>
+      </div>
+      <div class="visual-card">
+        <div class="icon">🎉</div>
+        <h3>Segmento de Festas</h3>
+        <p>Especializados em artigos plásticos para festas e eventos, com diversidade de cores e modelos para todos os gostos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="materiais-section">
+  <span class="section-label">Tecnologia</span>
+  <div class="section-title">Materiais que Utilizamos</div>
+  <div class="materiais-grid">
+    <div class="material-chip">PP</div>
+    <div class="material-chip">PS</div>
+    <div class="material-chip">ABS</div>
+    <div class="material-chip">Nylon</div>
+    <div class="material-chip">Translúcido</div>
+    <div class="material-chip">Leitoso</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>9G Plastic</h4>
+      <p>Injeção Termoplástica Ltda.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/9G-Plastic-244646442301526/" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/9gplastic/" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <a href="index.html">Início</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="quem-somos.html">Quem Somos</a>
+      <a href="contato.html">Contato</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p>(11) 3793-5717</p>
+      <p>(11) 98614-0795</p>
+      <p>m9gplastic@yahoo.com.br</p>
+    </div>
+    <div class="footer-col">
+      <h4>Endereço</h4>
+      <p>Rua Benedito Araújo, 106</p>
+      <p>Jd. Santa Adélia – SP</p>
+      <p>CEP 03974-170</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2024 9G Plastic Injeção Termoplástica Ltda.</div>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-panel">
+    <div class="cart-header"><h2>🛒 Carrinho</h2><button class="cart-close" id="cartClose">✕</button></div>
+    <div class="cart-items" id="cartItems"><div class="cart-empty"><div class="icon">🛒</div><p>Carrinho vazio.</p></div></div>
+    <div class="cart-footer">
+      <div class="cart-count-lbl" id="cartCountLbl"></div>
+      <div class="cart-total-row"><span class="lbl">Total</span><span class="val" id="cartTotal">0 produtos</span></div>
+      <a href="#" class="btn-checkout" id="btnCheckout">💬 Enviar pelo WhatsApp</a>
+      <button class="btn-clear-cart" id="btnClearCart">Limpar carrinho</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script>initCart();</script>
+</body>
+</html>

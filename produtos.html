@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos – 9G Plastic</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  background:linear-gradient(135deg,#2E86C1,#5BB8E8);
+  color:var(--branco); padding:50px 20px; text-align:center;
+}
+.page-hero h1 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(32px,5vw,52px); font-weight:900;
+  text-transform:uppercase; letter-spacing:-0.5px;
+}
+.page-hero p { font-size:16px; color:rgba(255,255,255,.8); margin-top:8px; }
+
+.produtos-section { padding:50px 20px; background:var(--cinza-claro); }
+.filter-bar {
+  max-width:1200px; margin:0 auto 32px;
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+}
+.filter-btn {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:15px; font-weight:600; letter-spacing:.5px; text-transform:uppercase;
+  background:var(--branco); border:2px solid var(--cinza-medio);
+  color:var(--texto); padding:8px 18px; border-radius:4px; cursor:pointer;
+  transition:all .15s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background:var(--azul); color:var(--branco); border-color:var(--azul);
+}
+.products-grid {
+  max-width:1200px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:20px;
+}
+.product-card {
+  background:var(--branco); border:1px solid var(--cinza-medio);
+  border-radius:8px; overflow:hidden;
+  transition:transform .15s, box-shadow .15s;
+  display:flex; flex-direction:column;
+}
+.product-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(91,184,232,.15); }
+.product-thumb {
+  background:var(--cinza-claro); height:180px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; position:relative;
+}
+.product-thumb img { width:100%; height:100%; object-fit:cover; }
+.product-tag {
+  position:absolute; top:8px; left:8px;
+  background:var(--azul); color:var(--branco);
+  font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+  padding:3px 8px; border-radius:2px;
+}
+.product-info { padding:14px; flex:1; display:flex; flex-direction:column; gap:8px; }
+.product-name {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:16px; font-weight:700; text-transform:uppercase;
+  color:var(--azul-medio); line-height:1.2;
+}
+.product-sub { font-size:12px; color:var(--texto-leve); }
+.product-actions { margin-top:auto; display:flex; flex-direction:column; gap:6px; }
+.btn-add-cart {
+  background:var(--vermelho); color:var(--branco);
+  border:none; padding:9px 12px; border-radius:4px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:15px; font-weight:700; text-transform:uppercase;
+  cursor:pointer; width:100%; transition:background .15s;
+}
+.btn-add-cart:hover { background:var(--vermelho-dark); }
+.btn-detail {
+  background:transparent; color:var(--azul-medio);
+  border:1.5px solid var(--azul); padding:7px 12px; border-radius:4px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:14px; font-weight:600; text-transform:uppercase;
+  cursor:pointer; width:100%; transition:all .15s;
+}
+.btn-detail:hover { background:var(--azul); color:var(--branco); }
+
+/* MODAL */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,.6);
+  z-index:2500; display:flex; align-items:center; justify-content:center;
+  padding:20px; opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.modal-overlay.open { opacity:1; pointer-events:all; }
+.modal-box {
+  background:var(--branco); border-radius:10px;
+  max-width:520px; width:100%; overflow:hidden;
+  transform:scale(.95); transition:transform .2s;
+}
+.modal-overlay.open .modal-box { transform:scale(1); }
+.modal-header {
+  background:var(--azul-medio); color:var(--branco);
+  padding:18px 20px; display:flex; justify-content:space-between; align-items:center;
+}
+.modal-header h3 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:20px; font-weight:900; text-transform:uppercase;
+}
+.modal-close { background:none; border:none; color:var(--branco); font-size:22px; cursor:pointer; }
+.modal-body { padding:20px; }
+.modal-img-wrap {
+  background:var(--cinza-claro); border-radius:8px;
+  height:200px; display:flex; align-items:center; justify-content:center;
+  overflow:hidden; margin-bottom:16px;
+}
+.modal-img-wrap img { max-height:100%; max-width:100%; object-fit:contain; }
+.modal-desc { color:var(--texto-leve); font-size:14px; line-height:1.6; margin-bottom:16px; }
+.modal-caixa {
+  background:var(--cinza-claro); border-left:3px solid var(--azul);
+  padding:8px 12px; border-radius:0 4px 4px 0;
+  font-size:13px; font-weight:600; color:var(--azul-medio);
+  margin-bottom:16px;
+}
+.variant-label { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--texto); display:block; margin-bottom:8px; }
+.variant-options { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+.variant-opt {
+  border:2px solid var(--cinza-medio); background:var(--cinza-claro);
+  color:var(--texto); padding:6px 12px; border-radius:4px;
+  font-size:12px; font-weight:600; cursor:pointer; transition:all .15s;
+}
+.variant-opt:hover, .variant-opt.selected { border-color:var(--azul); background:var(--azul); color:var(--branco); }
+.btn-add-modal {
+  display:block; width:100%; background:var(--vermelho); color:var(--branco);
+  border:none; padding:14px; border-radius:6px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:19px; font-weight:700; text-transform:uppercase;
+  cursor:pointer; transition:background .15s;
+}
+.btn-add-modal:hover { background:var(--vermelho-dark); }
+
+@media(max-width:600px){
+  .products-grid { grid-template-columns:repeat(2,1fr); gap:12px; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="tel:1137935717">☎ (11) 3793-5717</a>
+  <a href="https://api.whatsapp.com/send?phone=5511986140795" target="_blank">📱 (11) 98614-0795</a>
+  <a href="mailto:m9gplastic@yahoo.com.br">✉ m9gplastic@yahoo.com.br</a>
+</div>
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-area">
+      <div class="brand"><span class="nine">9</span><span class="g">.G.</span><span class="plastic">PLASTIC</span></div>
+      <small>INJEÇÃO TERMOPLÁSTICA LTDA.</small>
+    </a>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="produtos.html" class="active">Produtos</a>
+      <a href="quem-somos.html">Quem Somos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <button class="cart-btn" id="cartToggle">🛒 Carrinho <span class="cart-badge" id="cartBadge">0</span></button>
+  </div>
+</header>
+
+<div class="page-hero">
+  <h1>Nossos Produtos</h1>
+  <p>Catálogo completo — escolha a categoria e encontre o que precisa</p>
+</div>
+
+<section class="produtos-section">
+  <div class="filter-bar">
+    <button class="filter-btn active" data-cat="all">Todos</button>
+    <button class="filter-btn" data-cat="tacas">Taças</button>
+    <button class="filter-btn" data-cat="copos">Copos</button>
+    <button class="filter-btn" data-cat="bandejas">Bandejas</button>
+    <button class="filter-btn" data-cat="boleiras">Boleiras</button>
+    <button class="filter-btn" data-cat="decoracao">Decoração</button>
+    <button class="filter-btn" data-cat="outros">Outros</button>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>9G Plastic</h4>
+      <p>Injeção Termoplástica Ltda.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/9G-Plastic-244646442301526/" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/9gplastic/" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <a href="index.html">Início</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="quem-somos.html">Quem Somos</a>
+      <a href="contato.html">Contato</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p>(11) 3793-5717</p>
+      <p>(11) 98614-0795</p>
+      <p>m9gplastic@yahoo.com.br</p>
+    </div>
+    <div class="footer-col">
+      <h4>Endereço</h4>
+      <p>Rua Benedito Araújo, 106</p>
+      <p>Jd. Santa Adélia – SP</p>
+      <p>CEP 03974-170</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2024 9G Plastic Injeção Termoplástica Ltda.</div>
+</footer>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-panel">
+    <div class="cart-header"><h2>🛒 Carrinho</h2><button class="cart-close" id="cartClose">✕</button></div>
+    <div class="cart-items" id="cartItems"><div class="cart-empty"><div class="icon">🛒</div><p>Carrinho vazio.</p></div></div>
+    <div class="cart-footer">
+      <div class="cart-count-lbl" id="cartCountLbl"></div>
+      <div class="cart-total-row"><span class="lbl">Total</span><span class="val" id="cartTotal">0 produtos</span></div>
+      <a href="#" class="btn-checkout" id="btnCheckout">💬 Enviar pelo WhatsApp</a>
+      <button class="btn-clear-cart" id="btnClearCart">Limpar carrinho</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modalTitle">Produto</h3>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-img-wrap"><img id="modalImg" src="" alt=""></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-caixa" id="modalCaixa"></div>
+      <span class="variant-label">Escolha a cor:</span>
+      <div class="variant-options" id="variantOptions"></div>
+    </div>
+    <div style="padding:0 20px 20px">
+      <button class="btn-add-modal" id="btnAddModal">+ Adicionar ao Carrinho</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+<script>
+const catLabels = {tacas:'Taças',copos:'Copos',bandejas:'Bandejas',boleiras:'Boleiras',decoracao:'Decoração',outros:'Outros'};
+
+function renderProducts(cat = 'all') {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '';
+  const list = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === cat);
+  list.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.id = `produto-${p.id}`;
+    card.innerHTML = `
+      <div class="product-thumb">
+        <img src="${p.cores[0].img}" alt="${p.name}" onerror="this.parentNode.style.background='#d6edf8'">
+        <span class="product-tag">${catLabels[p.cat]||p.cat}</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-sub">${p.cores.length} cor${p.cores.length>1?'es':''} · ${p.caixa}</div>
+        <div class="product-actions">
+          <button class="btn-add-cart" onclick="addToCart(PRODUCTS.find(x=>x.id==${p.id}),'${p.cores[0].nome}')">+ Adicionar</button>
+          <button class="btn-detail" onclick="openModal(${p.id})">Ver Cores</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(btn.dataset.cat);
+  });
+});
+
+// Modal
+let currentModal = null, selectedCor = null;
+function openModal(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  currentModal = p;
+  selectedCor = p.cores[0].nome;
+  document.getElementById('modalTitle').textContent = p.name;
+  document.getElementById('modalImg').src = p.cores[0].img;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalCaixa').textContent = '📦 ' + p.caixa;
+  document.getElementById('variantOptions').innerHTML = p.cores.map(c => `
+    <button class="variant-opt ${c.nome===selectedCor?'selected':''}" onclick="selectCor('${c.nome}','${c.img}',this)">${c.nome}</button>
+  `).join('');
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function selectCor(nome, img, el) {
+  selectedCor = nome;
+  document.querySelectorAll('.variant-opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('modalImg').src = img;
+}
+document.getElementById('modalClose').addEventListener('click', () => document.getElementById('modalOverlay').classList.remove('open'));
+document.getElementById('modalOverlay').addEventListener('click', e => { if(e.target===document.getElementById('modalOverlay')) document.getElementById('modalOverlay').classList.remove('open'); });
+document.getElementById('btnAddModal').addEventListener('click', () => {
+  if (currentModal) { addToCart(currentModal, selectedCor); document.getElementById('modalOverlay').classList.remove('open'); }
+});
+
+// URL param
+const params = new URLSearchParams(window.location.search);
+const catParam = params.get('cat');
+if (catParam) {
+  const btn = document.querySelector(`[data-cat="${catParam}"]`);
+  if (btn) { document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+  renderProducts(catParam);
+} else { renderProducts(); }
+
+initCart();
+</script>
+</body>
+</html>
