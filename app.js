@@ -229,6 +229,14 @@ const PRODUCTS = [
     cores:[{nome:'TRANSPARENTE', img:BASE+'TUBETES/62589ae7bef0c.png'}]},
   { id:27, name:'Mini Maleta de PS', cat:'outros', caixa:'Caixa c/ 50 un.', desc:'Mini maleta para festas infantis e corporativas.',
     cores:[{nome:'PADRÃO', img:BASE+'MINI%20BAU/6258952266de9.png'}]},
+  { id:28, name:'Long Drink 500 ml – Sólido', cat:'copos', caixa:'Caixa c/ 100 un.', desc:'Copo long drink 500ml acabamento sólido, com tampa e canudo.',
+    cores:[
+      {nome:'AZUL', img:'long_drink_solido.jpeg'},
+    ]},
+  { id:29, name:'Long Drink 500 ml – Translúcido', cat:'copos', caixa:'Caixa c/ 100 un.', desc:'Copo long drink 500ml acabamento translúcido, com tampa e canudo.',
+    cores:[
+      {nome:'AZUL', img:'long_drink_translucido.jpeg'},
+    ]},
 ];
 
 // ── CARRINHO ──
