@@ -50,9 +50,11 @@ header {
   gap: 20px;
 }
 .logo-area { flex: 0 0 auto; text-decoration: none; }
-.logo-placeholder{
-  width:220px;
-  height:70px;
+.logo-img{
+    display:block;
+    width:220px;
+    height:auto;
+    object-fit:contain;
 }
 
 .brand {
