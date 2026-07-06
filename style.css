@@ -126,7 +126,7 @@ nav a.active {
 
 /* ── FOOTER ── */
 footer {
-  background: var(--azul-medio);
+  background: #B2DDF0;
   color: rgba(255,255,255,.8);
   padding: 40px 20px 20px;
 }
