@@ -297,8 +297,8 @@ const DESTAQUES_NOMES = [
   "Taça Gin 650ml C/Borda – Translúcido"
 ];
 const grid = document.getElementById('destaqueGrid');
-DESTAQUES.forEach(id => {
-  const p = PRODUCTS.find(x => x.id === id);
+DESTAQUES_NOMES.forEach(nome => {
+  const p = PRODUCTS.find(x => x.name === nome);
   if (!p) return;
   const card = document.createElement('div');
   card.className = 'produto-card';
