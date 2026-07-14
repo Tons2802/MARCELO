@@ -288,7 +288,14 @@
 
 <script src="app.js"></script>
 <script>
-const DESTAQUES = [1,5,14,6,17,21];
+const DESTAQUES_NOMES = [
+  "Mini Ursinho 6x4",
+  "Taça Champanhe 180ml – Leitoso",
+  "Copo Shake 500ml – Translúcido",
+  "Copo Twister 500ml – Translúcido",
+  "Vaso p/ Suculenta Premier – Translúcido",
+  "Taça Gin 650ml C/Borda – Translúcido"
+];
 const grid = document.getElementById('destaqueGrid');
 DESTAQUES.forEach(id => {
   const p = PRODUCTS.find(x => x.id === id);
